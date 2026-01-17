@@ -9,7 +9,7 @@ services:
          devices:
            - driver: nvidia
              capabilities: [gpu]
-             device_ids: ['${GPU_DEVICE_ID}']
+             device_ids: ["${GPU_DEVICE_ID}"]
 
     devices:
       - "/dev/dri:/dev/dri"
