@@ -1,0 +1,28 @@
+services:
+  comfyui:
+    image: ghcr.io/matheohan/comfyui-sage:1.0.2-cu1281-torch280-sage2.2.0-cc86-cp312
+    
+    ## For Nvidia GPU's - You probably want to uncomment this
+    deploy:
+     resources:
+       reservations:
+         devices:
+           - driver: nvidia
+             capabilities: [gpu]
+             device_ids: ['${GPU_DEVICE_ID}']
+
+    devices:
+      - "/dev/dri:/dev/dri"
+      # For AMD GPU
+      #- "/dev/kfd:/dev/kfd"
+
+    ports:
+      - 8188:8188 # ComfyUI web UI
+      - 8888:8888 # JupyterLab (token via JUPYTER_PASSWORD, root at /workspace)
+      - 8822:22 # SSH (set PUBLIC_KEY or check logs for generated root password)
+    
+    volumes:
+      - ./workspace:/workspace
+    
+    environment:
+      - JUPYTER_PASSWORD=password
