@@ -1,5 +1,6 @@
 {
     "scripts": {
-        "run": "./startup.sh"
+        "run": "./startup.sh",
+        "stop": "./stop.sh"
     }
 }

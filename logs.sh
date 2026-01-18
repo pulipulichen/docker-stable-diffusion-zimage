@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo docker compose logs -f
+sudo UID=$(id -u $SUDO_USER) GID=$(id -g $SUDO_USER) docker compose logs -f
